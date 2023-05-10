@@ -43,7 +43,7 @@ const Product = ({ products }) => {
                 <div className="mt-4">
                   <QRCode
                     style={{ height: "auto", width: "200px", heigth: "200px" }}
-                    value={`http://localhost:3000/products/${id}`}
+                    value={`https://value-asset-management-v1.netlify.app//products/${id}`}
                   />
                 </div>
               </div>
