@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
 
 function Products() {
@@ -11,16 +10,32 @@ function Products() {
     fetch("http://127.0.0.1:3000/products")
       .then((res) => res.json())
       .then((data) => {
-        if (!filterQuery) {
+        if (!filterQuery && !filterCategory) {
           setProducts(data);
-        } else {
+        } else if (filterQuery && !filterCategory) {
           setProducts(
             data.filter((product) =>
               product.name.toLowerCase().includes(filterQuery.toLowerCase())
             )
           );
+        } else if (!filterQuery && filterCategory) {
+          setProducts(
+            data.filter((product) => product.category === filterCategory)
+          );
         }
       });
+  }, [filterQuery, filterCategory]);
+
+  useEffect(() => {
+    if (filterCategory) {
+      setFilterQuery("");
+    }
+  }, [filterCategory]);
+
+  useEffect(() => {
+    if (filterQuery) {
+      setFilterCategory("");
+    }
   }, [filterQuery]);
 
   return (
@@ -44,7 +59,8 @@ function Products() {
           />
           <select
             className=" border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[45%] p-2.5 "
-            onChange={(e) => setFilterQuery(e.target.value)}
+            value={filterCategory}
+            onChange={(e) => setFilterCategory(e.target.value)}
           >
             <option value="">All Categories</option>
             <option value="Furniture">Furniture</option>
@@ -58,38 +74,44 @@ function Products() {
         </div>
       </div>
       <div className="flex flex-wrap justify-around py-8">
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="w-full w-[30%] p-4 bg-black flex hover:scale-105 transition-all duration-500 cursor-pointer"
-          >
-            <Link
-              to={`/product/${product.id}`}
-              className="p-4 flex-1 flex flex-col"
+        {products.length > 0 ? (
+          products.map((product) => (
+            <div
+              key={product.id}
+              className="w-full w-[30%] p-4 bg-black flex hover:scale-105 transition-all duration-500 cursor-pointer"
             >
-              <div className="bg-white rounded-lg overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.description}
-                  className="w-[400px] h-[400px] mb-4"
-                />
-              </div>
-              <h2 className="text-lg font-bold mb-2 text-[#f2f3f4] text-center mt-10">
-                {product.name}
-              </h2>
-              <p className="text-gray-600 text-center mb-2">
-                {product.description}
-              </p>
-              <p className="flex gap-2 justify-center text-white  mb-2">
-                Category:
-                <span className="text-gray-600">{product.category}</span>
-              </p>
-              <div className="flex justify-center mt-auto ">
-                <p className="text-gray-600">KSH {product.price}</p>
-              </div>
-            </Link>
-          </div>
-        ))}
+              <Link
+                to={`/products/${product.id}`}
+                className="p-4 flex-1 flex flex-col"
+              >
+                <div className="bg-white rounded-lg overflow-hidden">
+                  <img
+                    src={product.image}
+                    alt={product.description}
+                    className="w-[400px] h-[400px] mb-4"
+                  />
+                </div>
+                <h2 className="text-lg font-bold mb-2 text-[#f2f3f4] text-center mt-10">
+                  {product.name}
+                </h2>
+                <p className="text-gray-600 text-center mb-2">
+                  {product.description}
+                </p>
+                <p className="flex gap-2 justify-center text-white  mb-2">
+                  Category:
+                  <span className="text-gray-600">{product.category}</span>
+                </p>
+                <div className="flex justify-center mt-auto ">
+                  <p className="text-gray-600">KSH {product.price}</p>
+                </div>
+              </Link>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-2xl">
+            No products found that match the name or category
+          </p>
+        )}
       </div>
     </div>
   );
