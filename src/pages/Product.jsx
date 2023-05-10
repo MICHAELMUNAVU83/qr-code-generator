@@ -19,8 +19,8 @@ const Product = ({ products }) => {
       {products.map(
         (product) =>
           product.id === parseInt(id) && (
-            <div className="flex border-2 border-black rounded-2xl p-4 justify-center gap-4 w-[50%] h-[50%] mt-24 mx-auto items-center ">
-              <div className="w-[400px] h-[400px] bg-white rounded-lg overflow-hidden">
+            <div className="flex md:flex-row flex-col border-2 border-black rounded-2xl p-4 justify-center gap-4 md:w-[50%] w-[90%] h-[50%] mt-24 mx-auto items-center ">
+              <div className="md:w-[400px] md:h-[400px] w-[300px] h-[300px] bg-white rounded-lg overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.description}

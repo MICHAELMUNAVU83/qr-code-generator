@@ -45,16 +45,16 @@ function Products({ products }) {
           You can filter either by category or search for a specific product by
           name
         </p>
-        <div className="justify-around flex gap-4">
+        <div className="justify-around md:flex-row flex-col flex gap-4">
           <input
             type="text"
-            className=" border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[45%] p-2.5 "
+            className=" border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-[45%] mx-auto md:mx-0 w-[90%] p-2.5 "
             placeholder="Search for a product"
             value={filterQuery}
             onChange={(e) => setFilterQuery(e.target.value)}
           />
           <select
-            className=" border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[45%] p-2.5 "
+            className=" border border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-[45%] w-[90%] mx-auto md:mx-0 p-2.5 "
             value={filterCategory}
             onChange={(e) => setFilterCategory(e.target.value)}
           >
@@ -69,12 +69,12 @@ function Products({ products }) {
           </select>
         </div>
       </div>
-      <div className="flex flex-wrap justify-around py-8">
+      <div className="flex  md:flex-row flex-col gap-4 flex-wrap justify-around py-8">
         {allProducts.length > 0 ? (
           allProducts.map((product) => (
             <div
               key={product.id}
-              className="w-full w-[30%] p-4 bg-black flex hover:scale-105 transition-all duration-500 cursor-pointer"
+              className="w-full md:w-[30%] w-[90%] mx-auto md:mx-0 p-4 bg-black flex hover:scale-105 transition-all duration-500 cursor-pointer"
             >
               <Link
                 to={`/products/${product.id}`}
