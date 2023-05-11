@@ -35,7 +35,7 @@ function Products({ products }) {
   }, [filterQuery]);
 
   return (
-    <div className=" mx-auto">
+    <div className="mx-auto">
       <h1 className="uppercase text-5xl  underline text-center font-bold ">
         ALl Products
       </h1>
@@ -74,17 +74,17 @@ function Products({ products }) {
           allProducts.map((product) => (
             <div
               key={product.id}
-              className="w-full md:w-[30%] w-[90%] mx-auto md:mx-0 p-4 bg-black flex hover:scale-105 transition-all duration-500 cursor-pointer"
+              className="w-[90%] md:w-[30%]  mx-auto md:mx-0 p-2 bg-black flex hover:scale-105 transition-all duration-500 cursor-pointer"
             >
               <Link
                 to={`/products/${product.id}`}
-                className="p-4 flex-1 flex flex-col"
+                className="p-4 flex-1 items-center flex flex-col"
               >
-                <div className="bg-white rounded-lg overflow-hidden">
+                <div className=" rounded-lg ">
                   <img
                     src={product.image}
                     alt={product.description}
-                    className="w-[350px] h-[350px]  mb-4"
+                    className="md:w-[350px] rounded-lg w-[300px] h-[350px]  mb-4"
                   />
                 </div>
                 <h2 className="text-lg font-bold mb-2 text-[#f2f3f4] text-center mt-10">
