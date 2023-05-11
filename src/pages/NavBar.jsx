@@ -12,11 +12,11 @@ const NavBar = () => {
           <p>All</p> Products
         </Link>
 
-        <Link to="/add-product" className="p-4 gap-2 flex ">
+        {/* <Link to="/add-product" className="p-4 gap-2 flex ">
           {" "}
           Add
           <span>Product</span>
-        </Link>
+        </Link> */}
       </ul>
     </nav>
   );
