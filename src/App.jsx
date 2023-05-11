@@ -43,17 +43,12 @@ function App() {
   ];
   return (
     <>
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Products products={products} />} />
-          <Route path="/add-product" element={<AddProduct />} />
-          <Route
-            path="/products/:id"
-            element={<Product products={products} />}
-          />
-        </Routes>
-      </Router>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Products products={products} />} />
+        <Route path="/add-product" element={<AddProduct />} />
+        <Route path="/products/:id" element={<Product products={products} />} />
+      </Routes>
     </>
   );
 }
